@@ -5,6 +5,8 @@ import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -27,11 +29,12 @@ public class DemoQATests {
         $(".react-datepicker__year-select").selectOption("1991");
         $(".react-datepicker__day--027:not(.react-datepicker__day--outside-month)").click();
         $("#hobbies-checkbox-3").parent().click();
-        $("uploadPicture").uploadFromClasspath("img/1.png");
+        $("uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
         $("#currentAddress").setValue("Simferopol").scrollTo();
         $("#state").click();
-        $("#state").shouldHave(Condition.text("NCR")).click();
+        $("#state").$(byText("NCR")).click();
         $("#city").click();
+
 
 
 
